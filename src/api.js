@@ -19,9 +19,7 @@ class JoblyApi {
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
-    const params = (method === "get")
-        ? data
-        : {};
+    const params = method === "get" ? data : {};
 
     try {
       return (await axios({ url, method, data, params, headers })).data;
@@ -32,7 +30,23 @@ class JoblyApi {
     }
   }
 
-  // Individual API routes
+  /****************** Auth API Routes ***********************/
+
+  /** register new user and get token for user */
+
+  static async register(user) {
+    let res = await this.request("auth/register", { user }, "POST");
+    return res.token;
+  }
+
+  /**  login user and get token for user*/  
+
+  static async login({username, password}) {
+    let res = await this.request("auth/token", { username, password }, "POST");
+    return res.token;
+  }
+
+  /****************** Companies API Routes ***********************/
 
   /** Get details on a company by handle. */
 
@@ -41,14 +55,12 @@ class JoblyApi {
     return res.company;
   }
 
-  /** Get all companies. */
+  /** Get list of companies by search term or all. */
 
-  static async getCompany(handle) {
-    let res = await this.request(`companies/${handle}`);
-    return res.company;
+  static async getCompanies(searchTerm) {
+    let res = await this.request(`companies`, { q: searchTerm });
+    return res.companies;
   }
-
-
 
   // obviously, you'll add a lot here ...
 }
@@ -57,3 +69,7 @@ class JoblyApi {
 JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
     "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
     "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+
+
+
+export default JoblyApi;

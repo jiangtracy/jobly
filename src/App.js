@@ -1,23 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Routes from "/Routes";
+import Navigation from "./Navigation";
+import JoblyApi from "./api";
+import { useState, useEffect } from 'react';
 
+/** App renders list of routes for Jobly frontend
+ * NOTE: Using token at top level and passing down as props to let
+ * Components know if user is logged in / if it should render
+ *
+ * props: none
+ *
+ * state: 
+ * token - (string) representing logged in user
+ * userFormData - obj like { username, password, firstName, lastName, email }
+ * 
+ * 
+ * App -> Navigation
+ *        Routes
+ **/
 function App() {
+  const [token, setToken ] = useState(null);
+  const [signupFormData, setSignupFormData] = useState(null);
+
+  useEffect(function fetchTokenOnSignup(userFormData) {
+    
+    if (signupFormData !== null) {
+      const token = await JoblyApi.register(userFormData);
+      setToken(token);
+
+      // reset signupFormData so effect doesn't run again 
+      // until next signup form submission
+      setSignupFormData(null);
+    }
+
+  }, [signupFormData]);
+
+  /** updateSignup updates user form data to be used in API call */
+  function updateSignupForm(userFormData) {
+    setSignupFormData({...userFormData});
+  }  
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navigation token={token}/>
+      <Routes token={token}/>
     </div>
   );
 }
