@@ -45,6 +45,14 @@ class JoblyApi {
     let res = await this.request("auth/token", { username, password }, "POST");
     return res.token;
   }
+  /****************** Users API Routes ***********************/
+
+   /** Get details on an user by username */
+
+   static async getUser(username) {
+    let res = await this.request(`users${username}`);
+    return res.user;
+  }
 
   /****************** Companies API Routes ***********************/
 

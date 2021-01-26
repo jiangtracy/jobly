@@ -12,13 +12,16 @@ import { NavLink } from 'react-router-dom';
  * App -> Navigation
  * */  
 
+ //use active class 
+
 function Navigation() {
 
   /** Helper method renders NavLinks for logged in user */  
-  function renderLoggedInComponents() {
+
+  function renderLoggedInLinks() {
     return (
       <ul>
-        <NavLink exact to="/companies">
+        <NavLink to="/companies">
           Companies
         </NavLink>
         <NavLink exact to="/jobs">
@@ -35,7 +38,7 @@ function Navigation() {
   }
 
   /** renders signup / login links */  
-  function renderLoggedOutComponents() {
+  function renderLoggedOutLinks() {
     return (
       <ul>
         <NavLink exact to="/login">
@@ -48,13 +51,15 @@ function Navigation() {
     )
   }
 
-
   return (
     <nav>
       <div className="Navigation-Logo">
-
+      <NavLink exact to="/">
+          Jobly
+        </NavLink>
       </div>
-      {renderLoggedOutComponents()}
+      {renderLoggedInLinks()}
+      {renderLoggedOutLinks()}
     </nav>
   );
 }
