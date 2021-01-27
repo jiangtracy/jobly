@@ -2,7 +2,7 @@
 * Renders the Login form
 *
 * props:
-* -updatedLoginForm: fn to be called in parent
+* -login: fn to be called in parent
 *
 * state: 
 * - formData {username, password }
@@ -15,7 +15,7 @@ const initialFormData = {
   password: "",
 }
 
-function LoginForm({ updateLoginForm }){
+function LoginForm({ login }){
   return (
     <div>
       Login Form

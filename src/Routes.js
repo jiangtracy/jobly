@@ -1,6 +1,4 @@
 import { Route, Switch, Redirect } from "react-router-dom";
-import { useState, useEffect } from 'react';
-import JoblyApi from "./api";
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 import Companies from "./Companies";
@@ -12,9 +10,10 @@ import Homepage from "./Homepage";
  * Routes for Jobly
  *
  * props: 
- * -updateSignupForm: fn to be called in App
- * -updateLoginForm: fn to be called in App
- * -userAuthData: an object like {token, username}
+ * - signup: fn to be called in App
+ * - login: fn to be called in App
+ * - currentUser: obj like 
+ *     { username, firstName, lastName, email, isAdmin, jobs }
  * 
  * state: none
  *
@@ -28,30 +27,16 @@ import Homepage from "./Homepage";
  * TODO: Add routes above as we implement features
  **/
 
-function Routes({updateSignupForm, updateLoginForm, userAuthData}) {
+function Routes({signup, login, currentUser}) {
 
-  const [ currentUserData, setCurrentUserData ] = useState(null);
-
-  //Every time token changes, fetch currentUserData
-	useEffect(
-		function fetchCurrentUserOnTokenUpdate() {
-			async function fetchCurrentUser() {
-        const user = await JoblyApi.getUser(userAuthData.username);
-        setCurrentUserData(user);
-      }
-      if(userAuthData) fetchCurrentUser();
-		},
-		[]
-	);
-    //add a redirect
   return (
    
       <Switch>
         <Route exact path="/signup">
-          <SignupForm updateSignupForm={updateSignupForm} />
+          <SignupForm signup={signup} />
         </Route>
         <Route exact path="/login">
-          <LoginForm updateLoginForm={updateLoginForm} />
+          <LoginForm login={login} />
         </Route>
         <Route exact path="/companies">
           <Companies />
@@ -60,10 +45,10 @@ function Routes({updateSignupForm, updateLoginForm, userAuthData}) {
           <Jobs />
         </Route>
         <Route exact path="/profile">
-          <ProfileForm userData={currentUserData}/>
+          <ProfileForm currentUser={currentUser}/>
         </Route>
         <Route exact path="/">
-          <Homepage userAuthData={userAuthData}/>
+          <Homepage currentUser={currentUser}/>
         </Route>
         <Redirect to="/"></Redirect>
       </Switch>

@@ -2,7 +2,7 @@
 * Renders the signup form
 *
 * props:
-* -updatedSignupForm: fn to be called in parent
+* -signup: fn to be called in parent
 *
 * state: 
 * - formData {username, password, firstName, lastName, email}
@@ -18,7 +18,7 @@ const initialFormData = {
   email: "",
 }
 
-function SignupForm({ updateSignupForm }){
+function SignupForm({ signup }){
   return (
     <div>
       Signup Form

@@ -3,18 +3,18 @@ import { NavLink } from 'react-router-dom';
 /** 
  * Navigation renders list of NavLinks to different routes of Jobly
  * 
- * props: token? isLoggedIn?
+ * props:
+ * - currentUser: obj like, 
+ *   { username, firstName, lastName, email, isAdmin, jobs }
  * 
  * state: none
- * 
- * TODO: Need to figure out how to confirm if user is logged in
  * 
  * App -> Navigation
  * */  
 
  //use active class 
 
-function Navigation() {
+function Navigation({currentUser}) {
 
   /** Helper method renders NavLinks for logged in user */  
 
@@ -58,8 +58,10 @@ function Navigation() {
           Jobly
         </NavLink>
       </div>
-      {renderLoggedInLinks()}
-      {renderLoggedOutLinks()}
+      { currentUser !== null ?
+        renderLoggedInLinks() :
+        renderLoggedOutLinks()
+      }
     </nav>
   );
 }

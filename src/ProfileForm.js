@@ -2,15 +2,16 @@
 * Renders the ProfileForm
 *
 * props:
-* - userData object like {username, password, firstName, lastName, email}
-*
+* - currentUser: obj like 
+*     { username, firstName, lastName, email, isAdmin, jobs }
+* 
 * state: 
 * - formData {username, password, firstName, lastName, email}
 * 
 * App -> Routes -> ProfileForm
 */
 
-function ProfileForm ({userData}) {
+function ProfileForm ({currentUser}) {
   return (
     <div>
       ProfileForm goes here

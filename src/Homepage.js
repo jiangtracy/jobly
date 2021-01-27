@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 /** 
  * Homepage 
  * 
- * props: userAuthData (either null, or an object like {
- * token, username})
+ * props: 
+ * - currentUser: either null or obj like,
+ *     { username, firstName, lastName, email, isAdmin, jobs }
  * 
  * state: none
  * 
@@ -12,10 +13,10 @@ import { Link } from 'react-router-dom';
  * App -> Routes -> Homepage
  * */
 
- function Homepage( {userAuthData}) {
+ function Homepage( {currentUser}) {
   return (
-    userAuthData ?
-    (<div>Hello {userAuthData.username} </div>)
+    currentUser ?
+    (<div>Hello {currentUser.username} </div>)
     :
     (<div>
       <h3>Welcome to Jobly</h3>
