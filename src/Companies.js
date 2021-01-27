@@ -1,5 +1,5 @@
-import JoblyApi from "./api";
-import { useState, useEffect } from "react";
+import JoblyApi from './api';
+import { useState, useEffect } from 'react';
 import SearchForm from './SearchForm';
 import CompanyList from './CompanyList';
 
@@ -16,30 +16,32 @@ import CompanyList from './CompanyList';
  **/
 
 function Companies() {
-  const [companies, setCompanies] = useState([]);
+	const [ companies, setCompanies ] = useState([]);
 
-  /** When component mounts, get all the companies from API */  
-  useEffect(function getAllCompanies() {
-    async function _getAllCompanies() {
-      const companies = await JoblyApi.getCompanies("");
-      setCompanies(companies);
-    }
+	/** When component mounts, get all the companies from API */
 
-    _getAllCompanies();
-  }, []);
+	useEffect(function getAllCompanies() {
+		async function _getAllCompanies() {
+			const companies = await JoblyApi.getCompanies('');
+			setCompanies(companies);
+		}
 
-  /** Updates the list of companies when search is made */  
-  async function updateCompanies(searchTerm) {
-    const companies = await JoblyApi.getCompanies(searchTerm);
-    setCompanies(companies);
-  }
+		_getAllCompanies();
+	}, []);
 
-  return (
-    <div>
-      <SearchForm updateList={updateCompanies} />
-      <CompanyList companies={companies} />
-    </div>
-  );
+	/** Updates the list of companies when search is made */
+
+	async function updateCompanies(searchTerm) {
+		const companies = await JoblyApi.getCompanies(searchTerm);
+		setCompanies(companies);
+	}
+
+	return (
+		<div>
+			<SearchForm updateList={updateCompanies} />
+			<CompanyList companies={companies} />
+		</div>
+	);
 }
 
 export default Companies;

@@ -5,6 +5,7 @@ import Companies from "./Companies";
 import Jobs from "./Jobs";
 import ProfileForm from "./ProfileForm";
 import Homepage from "./Homepage";
+import CompanyDetail from "./CompanyDetail";
 
 /**
  * Routes for Jobly
@@ -41,6 +42,9 @@ function Routes({signup, login, currentUser}) {
         </Route>
         <Route exact path="/companies">
           <Companies />
+        </Route>
+        <Route exact path ="/companies/:handle">
+          <CompanyDetail currentUser={currentUser} />
         </Route>
         <Route exact path="/jobs">
           <Jobs />
