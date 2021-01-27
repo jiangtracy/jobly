@@ -66,7 +66,15 @@ class JoblyApi {
   /** Get list of companies by search term or all. */
 
   static async getCompanies(searchTerm) {
-    let res = await this.request(`companies`, { q: searchTerm });
+    let res;
+    if (searchTerm) {
+      res = await this.request(`companies`, {
+        name: searchTerm
+      });
+    } else {
+      res = await this.request(`companies`);
+    }
+    console.debug(res);
     return res.companies;
   }
 

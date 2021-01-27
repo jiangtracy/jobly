@@ -24,7 +24,8 @@ import Homepage from "./Homepage";
  *    CompanyDetail
  *    Jobs
  *
- * TODO: Add routes above as we implement features
+ * TODO: Finish CompanyDetail tmw (1/27) and Jobs, already did a lot of work
+ * with the authentication
  **/
 
 function Routes({signup, login, currentUser}) {
