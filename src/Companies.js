@@ -13,6 +13,7 @@ import CompanyList from './CompanyList';
  * - an array of companies like [ { handle, name, description, numEmployees, logoUrl }, ...]
  *
  * App -> Routes -> Companies
+ * TODO: Add a loading state here and in CompanyDetail/Jobs
  **/
 
 function Companies() {

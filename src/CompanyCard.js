@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 /**
  * CompanyCard
- * NOTE:CompanyCard might be wrapped as a Link to CompanyDetail
+ * NOTE: CompanyCard might be wrapped as a Link to CompanyDetail
  * 
  * props:
  * - company: obj like,

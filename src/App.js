@@ -21,6 +21,7 @@ import { BrowserRouter } from "react-router-dom";
  * 
  * App -> Navigation
  *        Routes
+ * // TODO: decode the token with jwt.decode
  **/
 function App() {
   const [token, setToken] = useState(null);

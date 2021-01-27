@@ -24,6 +24,7 @@ function SearchForm({ updateList }) {
   /** Handle submitting search term */  
   function handleSubmit(evt) {
     evt.preventDefault();
+    // TODO: Can add the validation here!
     updateList(searchTerm);
     setSearchTerm("");
   }

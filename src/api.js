@@ -65,6 +65,8 @@ class JoblyApi {
 
   /** Get list of companies by search term or all. */
 
+  // TODO: remove validation logic from API, validate it in our components
+  // before it reaches our API, api should be simple as possible
   static async getCompanies(searchTerm) {
     let res;
     if (searchTerm.length > 1) {

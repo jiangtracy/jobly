@@ -25,8 +25,7 @@ import CompanyDetail from "./CompanyDetail";
  *    CompanyDetail
  *    Jobs
  *
- * TODO: Finish CompanyDetail tmw (1/27) and Jobs, already did a lot of work
- * with the authentication
+ * TODO: Write forms for login/signup
  **/
 
 function Routes({signup, login, currentUser}) {
