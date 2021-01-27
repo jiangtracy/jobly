@@ -39,17 +39,17 @@ class JoblyApi {
     return res.token;
   }
 
-  /**  login user and get token for user*/  
+  /**  login user and get token for user*/
 
-  static async login({username, password}) {
+  static async login({ username, password }) {
     let res = await this.request("auth/token", { username, password }, "POST");
     return res.token;
   }
   /****************** Users API Routes ***********************/
 
-   /** Get details on an user by username */
+  /** Get details on an user by username */
 
-   static async getUser(username) {
+  static async getUser(username) {
     let res = await this.request(`users${username}`);
     return res.user;
   }
@@ -67,15 +67,30 @@ class JoblyApi {
 
   static async getCompanies(searchTerm) {
     let res;
-    if (searchTerm) {
+    if (searchTerm.length > 1) {
       res = await this.request(`companies`, {
-        name: searchTerm
+        name: searchTerm,
       });
     } else {
       res = await this.request(`companies`);
     }
-    console.debug(res);
     return res.companies;
+  }
+
+  /****************** Jobs API Routes ***********************/
+
+  /** Get list of jobs by search term or all */
+  // TODO: Ask if this validation is repetitive or if there's something better
+  static async getJobs(searchTerm) {
+    let res;
+    if (searchTerm.length > 1) {
+      res = await this.request("jobs", {
+        title: searchTerm
+      });
+    } else {
+      res = await this.request("jobs");
+    }
+    return res.jobs;
   }
 
   // obviously, you'll add a lot here ...

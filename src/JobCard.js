@@ -3,8 +3,8 @@
  * 
  * props:
  * - job: obj like,
- *     { id, title, salary, equity, company }
- * - isCompanyDetail: boolean
+ *     { id, title, salary, equity, (company OR (companyHandle, companyName)) }
+ * - isCompanyDetail: boolean to show company name
  *
  * state: none
  *
@@ -17,7 +17,7 @@
 
   function companyNameTag() {
     if(isCompanyDetail === false){
-      return <p>{job.company}</p>
+      return <p>{job.companyName}</p>
     }
     return null;
   }
