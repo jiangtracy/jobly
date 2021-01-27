@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+/** Bootstrap Components*/  
+import Row from "react-bootstrap/Row";
+
 /*
  * Renders the Search form
  *
@@ -31,15 +34,19 @@ function SearchForm({ updateList }) {
 
   const notDone = (searchTerm.trim().length > 1) ? false : true;
   return (
-    <form className="SearchForm" onSubmit={handleSubmit} >
-      <input 
-        name="search" 
-        id="search"
-        value={searchTerm}
-        onChange={handleChange} 
-        placeholder="Enter search term..." 
-      />
-      <button disabled={notDone}>Submit</button>
+    <form className="SearchForm mx-auto container-fluid" onSubmit={handleSubmit} >
+      <Row>
+        <input 
+          name="search" 
+          id="search"
+          value={searchTerm}
+          onChange={handleChange} 
+          placeholder="Enter search term..." 
+          className="col-10 py-2"
+        />
+        <button disabled={notDone} className="col-2">Submit</button>
+
+      </Row>
     </form>
   );
 }

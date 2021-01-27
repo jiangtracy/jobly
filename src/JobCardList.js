@@ -32,7 +32,7 @@ function JobCardList({ jobs  }) {
     });
   }
 
-  return <ul className="JobCardList">{generateJobsTags()}</ul>;
+  return <ul className="JobCardList container">{generateJobsTags()}</ul>;
 }
 
 export default JobCardList;

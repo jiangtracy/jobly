@@ -15,7 +15,7 @@ import CompanyCard from './CompanyCard';
 function CompanyList({companies}) {
 
   return (
-    <ul>
+    <ul className="CompanyList container">
       {companies.map(c => 
       <CompanyCard 
         key={c.handle}

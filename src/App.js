@@ -6,6 +6,9 @@ import JoblyApi from './api';
 import { useState, useEffect } from 'react';
 import { BrowserRouter } from "react-router-dom";
 
+/** Bootstrap Components*/  
+import Container from 'react-bootstrap/Container';
+
 
 /** App renders list of routes for Jobly frontend
  * NOTE: Using token at top level and passing down as props to let
@@ -69,12 +72,14 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navigation currentUser={currentUserData} />
-        <Routes
-          currentUser={currentUserData}
-          login={login}
-          signup={signup}
-        />
+        <Container fluid>
+          <Navigation currentUser={currentUserData} />
+          <Routes
+            currentUser={currentUserData}
+            login={login}
+            signup={signup}
+          />
+        </Container>
       </BrowserRouter>
     </div>
   );

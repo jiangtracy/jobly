@@ -3,6 +3,11 @@ import JobCardList from "./JobCardList";
 import SearchForm from "./SearchForm";
 import JoblyApi from "./api";
 
+/** Bootstrap Components */  
+import Container from "react-bootstrap/Container";
+import Row from 'react-bootstrap/Row';
+
+
 /**
  * Jobs
  *
@@ -47,8 +52,14 @@ function Jobs() {
 
   return (
     <div>
-      <SearchForm updateList={updateJobs} />
-      <JobCardList jobs={jobs} isCompanyDetail={false} />
+      <Container className="mt-5">
+        <Row className="mb-4">
+          <SearchForm updateList={updateJobs} />
+        </Row>
+        <Row>
+          <JobCardList jobs={jobs} />
+        </Row>
+      </Container>
     </div>
   );
 }

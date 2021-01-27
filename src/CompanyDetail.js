@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import JobCardList from './JobCardList';
 import JoblyApi from "./api";
 
@@ -21,6 +21,7 @@ import JoblyApi from "./api";
  **/
 
 function CompanyDetail({ currentUser }) {
+	const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 	const [ company, setCompany ] = useState(null);
 	const { handle } = useParams();
@@ -29,7 +30,13 @@ function CompanyDetail({ currentUser }) {
 
 	useEffect(function getCompanyDetail() {
 		async function _getCompanyDetail() {
-			const company = await JoblyApi.getCompany(handle);
+			let company;
+			try {
+				company = await JoblyApi.getCompany(handle);
+			} catch (err) {
+				setIsError(true);
+			}
+
 			setCompany(company);
 			setIsLoading(false);
 		}
@@ -37,12 +44,13 @@ function CompanyDetail({ currentUser }) {
 		_getCompanyDetail();
 	}, []);
 
+	if (isError) return <Redirect to="/"/>
   if (isLoading) return <div>Loading...</div>;
 	
   return company && (
-    <div className="CompanyDetail">
+    <div className="CompanyDetail mt-5">
       <h2 className="CompanyDetail-title">{company.name}</h2>
-      <p className="CompanyDetail-desc">{company.description}</p>
+      <p className="CompanyDetail-desc mb-5">{company.description}</p>
       <JobCardList jobs={company.jobs}  />
     </div>
   )
