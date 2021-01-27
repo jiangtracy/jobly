@@ -11,12 +11,13 @@ import CompanyList from './CompanyList';
  *
  * state:
  * - an array of companies like [ { handle, name, description, numEmployees, logoUrl }, ...]
- *
+ * - isLoading: boolean, indicates if any data is being loaded
+ * 
  * App -> Routes -> Companies
- * TODO: Add a loading state here and in CompanyDetail/Jobs
  **/
 
 function Companies() {
+  const [isLoading, setIsLoading ] = useState(true);
 	const [ companies, setCompanies ] = useState([]);
 
 	/** When component mounts, get all the companies from API */
@@ -24,7 +25,8 @@ function Companies() {
 	useEffect(function getAllCompanies() {
 		async function _getAllCompanies() {
 			const companies = await JoblyApi.getCompanies('');
-			setCompanies(companies);
+      setCompanies(companies);
+      setIsLoading(false);
 		}
 
 		_getAllCompanies();
@@ -33,9 +35,13 @@ function Companies() {
 	/** Updates the list of companies when search is made */
 
 	async function updateCompanies(searchTerm) {
+    setIsLoading(true);
 		const companies = await JoblyApi.getCompanies(searchTerm);
-		setCompanies(companies);
-	}
+    setCompanies(companies);
+    setIsLoading(false);
+  }
+  
+  if (isLoading) return <div>Loading...</div>
 
 	return (
 		<div>

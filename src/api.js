@@ -65,11 +65,10 @@ class JoblyApi {
 
   /** Get list of companies by search term or all. */
 
-  // TODO: remove validation logic from API, validate it in our components
   // before it reaches our API, api should be simple as possible
   static async getCompanies(searchTerm) {
     let res;
-    if (searchTerm.length > 1) {
+    if (searchTerm) {
       res = await this.request(`companies`, {
         name: searchTerm,
       });
@@ -82,10 +81,9 @@ class JoblyApi {
   /****************** Jobs API Routes ***********************/
 
   /** Get list of jobs by search term or all */
-  // TODO: Ask if this validation is repetitive or if there's something better
   static async getJobs(searchTerm) {
     let res;
-    if (searchTerm.length > 1) {
+    if (searchTerm) {
       res = await this.request("jobs", {
         title: searchTerm
       });

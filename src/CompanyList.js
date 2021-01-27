@@ -10,7 +10,6 @@ import CompanyCard from './CompanyCard';
  * state: none
  * 
  * Companies -> CompanyList
- * TODO: pass down destrucutred variables of company instead/ do this with Job too
  **/
 
 function CompanyList({companies}) {
@@ -20,7 +19,10 @@ function CompanyList({companies}) {
       {companies.map(c => 
       <CompanyCard 
         key={c.handle}
-        company={c}
+        handle={c.handle}
+        name={c.name}
+        description={c.description}
+        logoUrl={c.logoUrl}
       />
       )}
     </ul>

@@ -5,22 +5,24 @@ import { Link } from 'react-router-dom';
  * NOTE: CompanyCard might be wrapped as a Link to CompanyDetail
  * 
  * props:
- * - company: obj like,
- *     { handle, name, description, numEmployees, logoUrl }
+ * - handle: string
+ * - name: string
+ * - description: string
+ * - logoUrl: string
  *
  * state: none
  *
  * CompanyList -> CompanyCard
  **/
 
-function CompanyCard({ company }) {
+function CompanyCard({ handle, name, description, logoUrl }) {
   return (
-    <Link to={`companies/${company.handle}`}>
+    <Link to={`companies/${handle}`}>
       <div>
-        <h4>{company.name}</h4>  
-        <p>{company.description}</p>
-        <img src={company.logoUrl} 
-             alt={company.handle}/>
+        <h4>{name}</h4>  
+        <p>{description}</p>
+        <img src={logoUrl} 
+             alt={handle}/>
       </div>
     </Link>
   );
