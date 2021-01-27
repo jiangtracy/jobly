@@ -24,11 +24,12 @@ function SearchForm({ updateList }) {
   /** Handle submitting search term */  
   function handleSubmit(evt) {
     evt.preventDefault();
-    // TODO: Can add the validation here!
     updateList(searchTerm);
     setSearchTerm("");
+    
   }
 
+  const notDone = (searchTerm.trim().length > 1) ? false : true;
   return (
     <form className="SearchForm" onSubmit={handleSubmit} >
       <input 
@@ -38,7 +39,7 @@ function SearchForm({ updateList }) {
         onChange={handleChange} 
         placeholder="Enter search term..." 
       />
-      <button>Submit</button>
+      <button disabled={notDone}>Submit</button>
     </form>
   );
 }
