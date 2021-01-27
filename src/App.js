@@ -1,4 +1,5 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Routes from './Routes';
 import Navigation from './Navigation';
 import JoblyApi from './api';

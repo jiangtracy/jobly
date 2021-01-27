@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router-dom';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 
 /** 
  * Navigation renders list of NavLinks to different routes of Jobly
@@ -10,60 +12,46 @@ import { NavLink } from 'react-router-dom';
  * state: none
  * 
  * App -> Navigation
- * */  
+ * */
 
- //use active class 
+//use active class
 
-function Navigation({currentUser}) {
+function Navigation({ currentUser }) {
+	/** renders signup / login links */
+	function renderLoggedOutLinks() {
+		return (
+			<Navbar.Collapse id="basic-navbar-nav">
+				<Nav className="ml-auto">
+					<Nav.Link href="/login">Login</Nav.Link>
+					<Nav.Link href="/signup">Signup</Nav.Link>
+				</Nav>
+			</Navbar.Collapse>
+		);
+	}
 
-  /** Helper method renders NavLinks for logged in user */  
+	/** Helper method renders NavLinks for logged in user */
 
-  function renderLoggedInLinks() {
-    return (
-      <ul>
-        <NavLink to="/companies">
-          Companies
-        </NavLink>
-        <NavLink exact to="/jobs">
-          Jobs
-        </NavLink>
-        <NavLink exact to="/profile">
-          Profile
-        </NavLink>
-        <NavLink exact to="/logout">
-          Log Out
-        </NavLink>
-      </ul>
-    );
-  }
+	function renderLoggedInLinks() {
+		return (
+			<Navbar.Collapse id="basic-navbar-nav">
+				<Nav className="ml-auto">
+					<Nav.Link href="/companies">Companies</Nav.Link>
+					<Nav.Link href="/jobs">Jobs</Nav.Link>
+					<Nav.Link href="/profile">Profile</Nav.Link>
+					<Nav.Link href="/logout">Logout</Nav.Link>
+				</Nav>
+			</Navbar.Collapse>
+		);
+	}
 
-  /** renders signup / login links */  
-  function renderLoggedOutLinks() {
-    return (
-      <ul>
-        <NavLink exact to="/login">
-          Login
-        </NavLink>
-        <NavLink exact to="/signup">
-          Signup
-        </NavLink>
-      </ul>
-    )
-  }
+	return (
+		<Navbar bg="light" expand="lg">
+			<Navbar.Brand href="/">Jobly</Navbar.Brand>
+			<Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-  return (
-    <nav>
-      <div className="Navigation-Logo">
-      <NavLink exact to="/">
-          Jobly
-        </NavLink>
-      </div>
-      { currentUser !== null ?
-        renderLoggedInLinks() :
-        renderLoggedOutLinks()
-      }
-    </nav>
-  );
+			{currentUser !== null ? renderLoggedInLinks() : renderLoggedOutLinks()}
+		</Navbar>
+	);
 }
 
- export default Navigation;
+export default Navigation;
