@@ -14,6 +14,8 @@ import { Link } from 'react-router-dom';
  * */
 
  function Homepage( {currentUser}) {
+
+  console.log("home page current user", currentUser);
   return (
     currentUser ?
     (<div>Hello {currentUser.username} </div>)
