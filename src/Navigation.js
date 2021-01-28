@@ -22,8 +22,8 @@ function Navigation({ currentUser }) {
 		return (
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="ml-auto">
-					<Nav.Link href="/login">Login</Nav.Link>
-					<Nav.Link href="/signup">Signup</Nav.Link>
+					<NavLink to="/login">Login</NavLink>
+					<NavLink to="/signup">Signup</NavLink>
 				</Nav>
 			</Navbar.Collapse>
 		);
@@ -35,10 +35,10 @@ function Navigation({ currentUser }) {
 		return (
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="ml-auto">
-					<Nav.Link href="/companies">Companies</Nav.Link>
-					<Nav.Link href="/jobs">Jobs</Nav.Link>
-					<Nav.Link href="/profile">Profile</Nav.Link>
-					<Nav.Link href="/logout">Logout</Nav.Link>
+					<NavLink to="/companies">Companies</NavLink>
+					<NavLink to="/jobs">Jobs</NavLink>
+					<NavLink to="/profile">Profile</NavLink>
+					<NavLink to="/logout">Logout</NavLink>
 				</Nav>
 			</Navbar.Collapse>
 		);
@@ -46,7 +46,7 @@ function Navigation({ currentUser }) {
 
 	return (
 		<Navbar bg="light" expand="lg">
-			<Navbar.Brand href="/">Jobly</Navbar.Brand>
+			<NavLink to="/">Jobly</NavLink>
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
 
 			{currentUser !== null ? renderLoggedInLinks() : renderLoggedOutLinks()}

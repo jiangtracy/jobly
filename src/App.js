@@ -32,6 +32,8 @@ function App() {
   const [username, setUsername] = useState(null);
   const [currentUserData, setCurrentUserData] = useState(null);
 
+  console.log("currentUserData", currentUserData);
+
   /** Every time token is updated,
    * update API token and then fetch current user
    **/
