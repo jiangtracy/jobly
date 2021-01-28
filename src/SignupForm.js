@@ -41,9 +41,15 @@ function SignupForm({ signup }){
     /** Handle submitting the Signup Form */  
     async function handleSubmit(evt) {
       evt.preventDefault();
-      await signup(formData);
+      const result = await signup(formData);
       setFormData(initialFormData);
-      history.push("/companies");
+      
+      if (result.success === true) {
+        history.push("/companies") 
+      } else {
+        // will change to something more presentable
+        alert(result.errors.join(""));
+      }
     }
 
     /* Helper function for form validation */

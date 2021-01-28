@@ -39,11 +39,15 @@ function LoginForm({ login, errors }){
     // TODO: Consider all ajax-y stuff to be handled in effects
     async function handleSubmit(evt) {
       evt.preventDefault();
-      await login(formData);
+      const result = await login(formData);
       setFormData(initialFormData);
 
-      console.debug("errors in loginForm= ", errors);
-      // if (errors.length === 0) history.push("/companies");
+      if (result.success === true) {
+        history.push("/companies") 
+      } else {
+        // will change to something more presentable
+        alert(result.errors.join(""));
+      }
     }
 
     /* Helper function for form validation */
@@ -58,9 +62,6 @@ function LoginForm({ login, errors }){
   
   return (
     <form onSubmit={handleSubmit}>
-
-      {errors.map((err,idx) => <p key={idx}>{err}</p>) }
-
       <label htmlFor="username">Username</label>
       <input 
           name="username" 

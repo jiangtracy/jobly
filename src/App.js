@@ -65,8 +65,20 @@ function App() {
 
   /** signup user with form data and API call */
   async function signup(userFormData) {
-    const token = await JoblyApi.register(userFormData);
-    setToken(token);
+    let token;
+    try {
+      token = await JoblyApi.register(userFormData);
+      setToken(token);
+      return {
+        success : true
+      }
+    }
+    catch (err) {
+      return {
+        success: false,
+        errors: err
+      }
+    }
   }
   /** login user using form data and API call */
   async function login(userFormData) {
@@ -74,8 +86,14 @@ function App() {
     try {
       newToken = await JoblyApi.login(userFormData); 
       setToken(newToken);
+      return {
+        success : true
+      }
     } catch (err) {
-      setErrors([...err]);
+      return {
+        success: false,
+        errors: err
+      }
     }
   }
 
