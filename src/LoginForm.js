@@ -19,6 +19,11 @@ const initialFormData = {
   password: "",
 }
 
+const DEMO_USER =  {
+  username: "testuser",
+  password: "password"
+}
+
 function LoginForm({ login, errors }){
   const [formData, setFormData ] = useState(initialFormData);
   const history = useHistory();
@@ -50,6 +55,22 @@ function LoginForm({ login, errors }){
       }
     }
 
+    /** Helper to quickly login a demo user on click, currently 
+     * a little bugged */  
+    async function handleDemo(evt) {
+      evt.preventDefault();
+      setFormData(DEMO_USER);
+      const result = await login(formData);
+
+      if (result.success === true) {
+        history.push("/companies");
+      } else {
+        // will change to something more presentable
+        // alert(result.errors.join(""));
+      }
+    }
+
+
     /* Helper function for form validation */
     function notDone() {
       const invalidInputArr = Object.keys(formData).filter( key => {
@@ -61,27 +82,30 @@ function LoginForm({ login, errors }){
 
   
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">Username</label>
-      <input 
-          name="username" 
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="username">Username</label>
+        <input
+          name="username"
           id="username"
           value={formData.username}
           onChange={handleChange}
-          required 
+          required
         />
-      <label htmlFor="password">Password</label>
-      <input 
-          name="password" 
+        <label htmlFor="password">Password</label>
+        <input
+          name="password"
           id="password"
           value={formData.password}
           type="password"
           onChange={handleChange}
-          required  
+          required
         />
-      <button disabled={notDone()} >Submit</button>
-    </form>
-  )
+        <button disabled={notDone()}>Submit</button>
+      </form>
+      <button onClick={handleDemo}>Demo Login</button>
+    </div>
+  );
 }
 
 export default LoginForm;
