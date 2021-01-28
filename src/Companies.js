@@ -3,6 +3,10 @@ import { useState, useEffect } from 'react';
 import SearchForm from './SearchForm';
 import CompanyList from './CompanyList';
 
+/** Bootstrap Components */  
+import Container from "react-bootstrap/Container";
+import Row from 'react-bootstrap/Row';
+
 /**
  * Companies
  *
@@ -45,8 +49,14 @@ function Companies() {
 
 	return (
 		<div>
-			<SearchForm updateList={updateCompanies} />
-			<CompanyList companies={companies} />
+      <Container className="mt-5">
+        <Row className="mb-4">
+          <SearchForm updateList={updateCompanies} />
+        </Row>
+        <Row>
+          <CompanyList companies={companies} />
+        </Row>
+      </Container>
 		</div>
 	);
 }
