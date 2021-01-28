@@ -2,6 +2,7 @@ import JoblyApi from './api';
 import { useState, useEffect } from 'react';
 import SearchForm from './SearchForm';
 import CompanyList from './CompanyList';
+import { Redirect } from 'react-router-dom';
 
 /** Bootstrap Components */  
 import Container from "react-bootstrap/Container";
@@ -11,7 +12,8 @@ import Row from 'react-bootstrap/Row';
  * Companies
  *
  * props:
- * - none
+ * - currentUser, obj like:
+ *      { username, firstName, lastName, email, isAdmin, jobs }
  *
  * state:
  * - an array of companies like [ { handle, name, description, numEmployees, logoUrl }, ...]
@@ -20,10 +22,11 @@ import Row from 'react-bootstrap/Row';
  * App -> Routes -> Companies
  **/
 
-function Companies() {
+function Companies({currentUser, username}) {
   const [isLoading, setIsLoading ] = useState(true);
 	const [ companies, setCompanies ] = useState([]);
 
+  console.debug('currentUser in Companies: ', currentUser);
 	/** When component mounts, get all the companies from API */
 
 	useEffect(function getAllCompanies() {
@@ -45,6 +48,7 @@ function Companies() {
     setIsLoading(false);
   }
   
+  if (Boolean(username) === false) return <Redirect to="/"/>;
   if (isLoading) return <div>Loading...</div>
 
 	return (

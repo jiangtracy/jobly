@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 
 /*
@@ -14,7 +14,7 @@ import Nav from "react-bootstrap/Nav";
  * Navigation -> Logout
  */
 
-function Logout({ logout, currentUser, username }) {
+function Logout({ logout, username }) {
   const history = useHistory();
 
   /** Calls parent fn to logout current user */  
@@ -24,7 +24,9 @@ function Logout({ logout, currentUser, username }) {
   }
 
   return (
-    <Nav.Link href="/" onClick={handleClick}>Logout {username}</Nav.Link>
+    <Nav.Link as="div">
+      <NavLink to="/" onClick={handleClick}>Logout {username}</NavLink>
+    </Nav.Link>
   );
 }
 

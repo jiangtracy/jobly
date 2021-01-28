@@ -50,7 +50,7 @@ function LoginForm({ login, errors }){
       if (result.success === true) {
         history.push("/companies") 
       } else {
-        // will change to something more presentable
+        // TODO: need to change to something more presentable
         alert(result.errors.join(""));
       }
     }

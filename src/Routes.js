@@ -41,7 +41,7 @@ function Routes({signup, login, currentUser, username }) {
           <LoginForm login={login}/>
         </Route>
         <Route exact path="/companies">
-          <Companies />
+          <Companies currentUser={currentUser} username={username}/>
         </Route>
         <Route exact path ="/companies/:handle">
           <CompanyDetail currentUser={currentUser} />

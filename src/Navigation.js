@@ -1,6 +1,6 @@
 import Logout from './Logout';
 import jwt from "jsonwebtoken";
-
+import { NavLink } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
@@ -10,7 +10,6 @@ import Nav from 'react-bootstrap/Nav';
  * props:
  * - currentUser: obj like, 
  *   { username, firstName, lastName, email, isAdmin, jobs }
- * - username, string of user's name
  * 
  * state: none
  * 
@@ -19,18 +18,23 @@ import Nav from 'react-bootstrap/Nav';
 
 //use active class
 
-function Navigation({ logout, username }) {
+function Navigation({ logout, currentUser }) {
 
 	/** renders signup / login links */
 	function renderLoggedOutLinks() {
 		return (
-			<Navbar.Collapse id="basic-navbar-nav">
-				<Nav className="ml-auto">
-					<Nav.Link href="/login">Login</Nav.Link>
-					<Nav.Link href="/signup">Signup</Nav.Link>
-				</Nav>
-			</Navbar.Collapse>
-		);
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          <Nav.Link as="div">
+            <NavLink to="/login">Login</NavLink>
+          </Nav.Link>
+
+          <Nav.Link as="div">
+            <NavLink to="/signup">Signup</NavLink>
+          </Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    );
 	}
 
 	/** Helper method renders NavLinks for logged in user */
@@ -39,9 +43,18 @@ function Navigation({ logout, username }) {
 		return (
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="ml-auto">
-					<Nav.Link href="/companies">Companies</Nav.Link>
-					<Nav.Link href="/jobs">Jobs</Nav.Link>
-					<Nav.Link href="/profile">Profile</Nav.Link>
+          <Nav.Link as="div">
+            <NavLink to="/companies">Companies</NavLink>
+          </Nav.Link>
+
+					<Nav.Link as="div">
+            <NavLink to="/jobs">Jobs</NavLink>
+          </Nav.Link>
+
+          <Nav.Link as="div">
+            <NavLink to="/profile">Profile</NavLink>
+          </Nav.Link>
+
 					<Logout logout={logout} username={username}/>
 				</Nav>
 			</Navbar.Collapse>
@@ -50,9 +63,8 @@ function Navigation({ logout, username }) {
   
   /** Helper method checks for a user and decides which links to render */
   function elementsToRender() {
-    console.debug("username in nav :", username);
-    if (username !== null) {
-        return renderLoggedInLinks(username);
+    if (currentUser !== null) {
+        return renderLoggedInLinks(currentUser.username);
     } else {
       return renderLoggedOutLinks();
     }
@@ -62,8 +74,7 @@ function Navigation({ logout, username }) {
 		<Navbar bg="light" expand="lg">
 			<Nav.Link href="/">Jobly</Nav.Link>
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
-      {elementsToRender()}
-			{/* {currentUser !== null ? renderLoggedInLinks() : renderLoggedOutLinks()} */}
+			{currentUser !== null ? renderLoggedInLinks(currentUser.username) : renderLoggedOutLinks()}
 		</Navbar>
 	);
 }

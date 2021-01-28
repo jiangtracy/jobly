@@ -30,18 +30,18 @@ import Container from 'react-bootstrap/Container';
  **/
 function App() {
   const [token, setToken ] = useLocalStorage();
-  const [username, setUsername ] = useState( () => {
-    if (token) {
-      const name = jwt.decode(token).username;
-      return name;
-    } 
-    return null;
-  });
+  // const [username, setUsername ] = useState( () => {
+  //   if (token) {
+  //     const name = jwt.decode(token).username;
+  //     return name;
+  //   } 
+  //   return null;
+  // });
   const [currentUserData, setCurrentUserData] = useState(null);
 
-  console.debug("currentUserData", currentUserData);
-  console.debug("token :", token);
-  console.debug("Checking localstorage on App render ", localStorage.getItem("token"));
+  // console.debug("currentUserData", currentUserData);
+  // console.debug("token :", token);
+  // console.debug("Checking localstorage on App render ", localStorage.getItem("token"));
 
   /** Every time token is updated,
    *  update API token and then fetch current user
@@ -66,7 +66,7 @@ function App() {
         // in order to not re-render every time.
         // TODO: Ask if there's a better way to avoid flickering
         // without keeping separate state for the username
-        setUsername(usernameObj.username);
+        // setUsername(usernameObj.username);
 
         // reset token in frontend to null so effect doesn't run
         // again until another user logs in / signs up
@@ -128,15 +128,15 @@ function App() {
     setToken(null);
     localStorage.setItem("token", null);
     setCurrentUserData(null);
+    // setUsername(null);
   }
 
   return (
     <div className="App">
       <BrowserRouter>
         <Container fluid>
-          <Navigation currentUser={currentUserData} logout={logout} username={username} />
+          <Navigation currentUser={currentUserData} logout={logout}  />
           <Routes
-            username={username}
             currentUser={currentUserData}
             login={login}
             signup={signup}
