@@ -1,4 +1,5 @@
 import { useHistory } from "react-router-dom";
+import Nav from "react-bootstrap/Nav";
 
 /*
  * Renders the Logout Component
@@ -22,7 +23,7 @@ function Logout({ logout, currentUser }) {
   }
 
   return (
-    <a onClick={handleClick} href="/">Logout {currentUser.username}</a>
+    <Nav.Link href="/" onClick={handleClick}>Logout {currentUser.username}</Nav.Link>
   );
 }
 
