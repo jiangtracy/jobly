@@ -13,12 +13,11 @@ import { Link } from 'react-router-dom';
  * App -> Routes -> Homepage
  * */
 
- function Homepage( {currentUser}) {
+ function Homepage({ username }) {
 
-  console.log("home page current user", currentUser);
   return (
-    currentUser ?
-    (<div>Hello {currentUser.username} </div>)
+    username ?
+    (<div>Hello {username} </div>)
     :
     (<div>
       <h3>Welcome to Jobly</h3>

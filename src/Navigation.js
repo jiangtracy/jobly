@@ -1,5 +1,6 @@
-import { NavLink } from 'react-router-dom';
 import Logout from './Logout';
+import jwt from "jsonwebtoken";
+
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
@@ -9,6 +10,7 @@ import Nav from 'react-bootstrap/Nav';
  * props:
  * - currentUser: obj like, 
  *   { username, firstName, lastName, email, isAdmin, jobs }
+ * - username, string of user's name
  * 
  * state: none
  * 
@@ -17,8 +19,7 @@ import Nav from 'react-bootstrap/Nav';
 
 //use active class
 
-function Navigation({ currentUser, logout }) {
-  console.debug("currentUser in navigation= ", currentUser);
+function Navigation({ logout, username }) {
 
 	/** renders signup / login links */
 	function renderLoggedOutLinks() {
@@ -34,25 +35,35 @@ function Navigation({ currentUser, logout }) {
 
 	/** Helper method renders NavLinks for logged in user */
 
-	function renderLoggedInLinks() {
+	function renderLoggedInLinks(username) {
 		return (
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="ml-auto">
 					<Nav.Link href="/companies">Companies</Nav.Link>
 					<Nav.Link href="/jobs">Jobs</Nav.Link>
 					<Nav.Link href="/profile">Profile</Nav.Link>
-					<Logout logout={logout} currentUser={currentUser}/>
+					<Logout logout={logout} username={username}/>
 				</Nav>
 			</Navbar.Collapse>
 		);
-	}
+  }
+  
+  /** Helper method checks for a user and decides which links to render */
+  function elementsToRender() {
+    console.debug("username in nav :", username);
+    if (username !== null) {
+        return renderLoggedInLinks(username);
+    } else {
+      return renderLoggedOutLinks();
+    }
+  }  
 
 	return (
 		<Navbar bg="light" expand="lg">
 			<Nav.Link href="/">Jobly</Nav.Link>
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
-
-			{currentUser !== null ? renderLoggedInLinks() : renderLoggedOutLinks()}
+      {elementsToRender()}
+			{/* {currentUser !== null ? renderLoggedInLinks() : renderLoggedOutLinks()} */}
 		</Navbar>
 	);
 }

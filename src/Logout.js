@@ -6,6 +6,7 @@ import Nav from "react-bootstrap/Nav";
  *
  * props:
  * -logout: fn to be called in parent
+ * - username: string of user's name
  *
  * state: none
  *
@@ -13,7 +14,7 @@ import Nav from "react-bootstrap/Nav";
  * Navigation -> Logout
  */
 
-function Logout({ logout, currentUser }) {
+function Logout({ logout, currentUser, username }) {
   const history = useHistory();
 
   /** Calls parent fn to logout current user */  
@@ -23,7 +24,7 @@ function Logout({ logout, currentUser }) {
   }
 
   return (
-    <Nav.Link href="/" onClick={handleClick}>Logout {currentUser.username}</Nav.Link>
+    <Nav.Link href="/" onClick={handleClick}>Logout {username}</Nav.Link>
   );
 }
 

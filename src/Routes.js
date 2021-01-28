@@ -29,16 +29,16 @@ import CompanyDetail from "./CompanyDetail";
  * TODO: Write forms for login/signup
  **/
 
-function Routes({signup, login, currentUser, errors}) {
+function Routes({signup, login, currentUser, username }) {
 
   return (
    
       <Switch>
         <Route exact path="/signup">
-          <SignupForm signup={signup} errors={errors} />
+          <SignupForm signup={signup} />
         </Route>
         <Route exact path="/login">
-          <LoginForm login={login} errors={errors}/>
+          <LoginForm login={login}/>
         </Route>
         <Route exact path="/companies">
           <Companies />
@@ -53,7 +53,7 @@ function Routes({signup, login, currentUser, errors}) {
           <ProfileForm currentUser={currentUser}/>
         </Route>
         <Route exact path="/">
-          <Homepage currentUser={currentUser}/>
+          <Homepage currentUser={currentUser} username={username}/>
         </Route>
         <Redirect to="/"></Redirect>
       </Switch>
