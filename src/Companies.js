@@ -22,7 +22,7 @@ import Row from 'react-bootstrap/Row';
  * App -> Routes -> Companies
  **/
 
-function Companies({currentUser, username}) {
+function Companies({currentUser }) {
   const [isLoading, setIsLoading ] = useState(true);
 	const [ companies, setCompanies ] = useState([]);
 
@@ -48,7 +48,8 @@ function Companies({currentUser, username}) {
     setIsLoading(false);
   }
   
-  if (Boolean(username) === false) return <Redirect to="/"/>;
+  // if (Boolean(currentUser) === false) return <Redirect to="/"/>;
+  if (!currentUser) return <Redirect to="/"/>;
   if (isLoading) return <div>Loading...</div>
 
 	return (

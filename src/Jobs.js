@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
-import JobCardList from "./JobCardList";
-import SearchForm from "./SearchForm";
-import JoblyApi from "./api";
+import { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import JobCardList from './JobCardList';
+import SearchForm from './SearchForm';
+import JoblyApi from './api';
 
-/** Bootstrap Components */  
-import Container from "react-bootstrap/Container";
+/** Bootstrap Components */
+
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-
 
 /**
  * Jobs
@@ -22,46 +23,46 @@ import Row from 'react-bootstrap/Row';
  *  Routes -> Jobs
  **/
 
-function Jobs() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [jobs, setJobs] = useState([]);
+function Jobs({ currentUser }) {
+	const [ isLoading, setIsLoading ] = useState(true);
+	const [ jobs, setJobs ] = useState([]);
 
-  /** When component mounts, get all jobs from API */
+	/** When component mounts, get all jobs from API */
 
-  useEffect(function getJobs() {
-    async function _getJobs() {
-      const jobs = await JoblyApi.getJobs("");
-      setJobs(jobs);
-      setIsLoading(false);
-    }
+	useEffect(function getJobs() {
+		async function _getJobs() {
+      const jobs = await JoblyApi.getJobs('');
+			setJobs(jobs);
+			setIsLoading(false);
+		}
 
-    _getJobs();
-  }, []);
+		_getJobs();
+	}, []);
 
-  /** Updates the list of jobs when search is made */
+	/** Updates the list of jobs when search is made */
 
-  async function updateJobs(searchTerm) {
-    setIsLoading(true);
-    const jobs = await JoblyApi.getJobs(searchTerm);
-    setJobs(jobs);
-    setIsLoading(false);
+	async function updateJobs(searchTerm) {
+		setIsLoading(true);
+		const jobs = await JoblyApi.getJobs(searchTerm);
+		setJobs(jobs);
+		setIsLoading(false);
+	}
 
-  }
+	if (!currentUser) return <Redirect to="/" />;
+	if (isLoading) return <div>Loading...</div>;
 
-  if (isLoading) return <div>Loading...</div>;
-
-  return (
-    <div>
-      <Container className="mt-5">
-        <Row className="mb-4">
-          <SearchForm updateList={updateJobs} />
-        </Row>
-        <Row>
-          <JobCardList jobs={jobs} />
-        </Row>
-      </Container>
-    </div>
-  );
+	return (
+		<div>
+			<Container className="mt-5">
+				<Row className="mb-4">
+					<SearchForm updateList={updateJobs} />
+				</Row>
+				<Row>
+					<JobCardList jobs={jobs} />
+				</Row>
+			</Container>
+		</div>
+	);
 }
 
 export default Jobs;

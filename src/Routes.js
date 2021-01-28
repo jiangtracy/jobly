@@ -15,7 +15,6 @@ import CompanyDetail from "./CompanyDetail";
  * - login: fn to be called in App
  * - currentUser: obj like 
  *     { username, firstName, lastName, email, isAdmin, jobs }
- * - errors, array of string errors
  * 
  * state: none
  *
@@ -25,11 +24,10 @@ import CompanyDetail from "./CompanyDetail";
  *    Companies
  *    CompanyDetail
  *    Jobs
- *
- * TODO: Write forms for login/signup
+ *    Redirect - to homepage
  **/
 
-function Routes({signup, login, currentUser, username }) {
+function Routes({signup, login, currentUser }) {
 
   return (
    
@@ -41,19 +39,19 @@ function Routes({signup, login, currentUser, username }) {
           <LoginForm login={login}/>
         </Route>
         <Route exact path="/companies">
-          <Companies currentUser={currentUser} username={username}/>
+          <Companies currentUser={currentUser} />
         </Route>
         <Route exact path ="/companies/:handle">
           <CompanyDetail currentUser={currentUser} />
         </Route>
         <Route exact path="/jobs">
-          <Jobs />
+          <Jobs currentUser={currentUser} />
         </Route>
         <Route exact path="/profile">
           <ProfileForm currentUser={currentUser}/>
         </Route>
         <Route exact path="/">
-          <Homepage currentUser={currentUser} username={username}/>
+          <Homepage currentUser={currentUser} />
         </Route>
         <Redirect to="/"></Redirect>
       </Switch>

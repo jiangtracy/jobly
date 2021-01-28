@@ -45,7 +45,8 @@ function CompanyDetail({ currentUser }) {
 	}, [handle]);
 
 	if (isError) return <Redirect to="/"/>
-  if (isLoading) return <div>Loading...</div>;
+	if (isLoading) return <div>Loading...</div>;
+	if (!currentUser) return <Redirect to="/"/>;
 	
   return company && (
     <div className="CompanyDetail mt-5">
