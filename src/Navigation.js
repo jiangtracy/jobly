@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import Logout from './Logout';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
@@ -16,7 +17,7 @@ import Nav from 'react-bootstrap/Nav';
 
 //use active class
 
-function Navigation({ currentUser }) {
+function Navigation({ currentUser, logout }) {
 	/** renders signup / login links */
 	function renderLoggedOutLinks() {
 		return (
@@ -38,7 +39,7 @@ function Navigation({ currentUser }) {
 					<NavLink to="/companies">Companies</NavLink>
 					<NavLink to="/jobs">Jobs</NavLink>
 					<NavLink to="/profile">Profile</NavLink>
-					<NavLink to="/logout">Logout</NavLink>
+					<Logout logout={logout} currentUser={currentUser}/>
 				</Nav>
 			</Navbar.Collapse>
 		);

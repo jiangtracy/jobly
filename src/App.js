@@ -5,6 +5,7 @@ import Navigation from './Navigation';
 import JoblyApi from './api';
 import { useState, useEffect } from 'react';
 import { BrowserRouter } from "react-router-dom";
+import jwt from 'jsonwebtoken';
 
 /** Bootstrap Components*/  
 import Container from 'react-bootstrap/Container';
@@ -25,11 +26,9 @@ import Container from 'react-bootstrap/Container';
  * 
  * App -> Navigation
  *        Routes
- * // TODO: decode the token with jwt.decode
  **/
 function App() {
   const [token, setToken] = useState(null);
-  const [username, setUsername] = useState(null);
   const [currentUserData, setCurrentUserData] = useState(null);
 
   console.log("currentUserData", currentUserData);
@@ -40,10 +39,9 @@ function App() {
   useEffect(
     function fetchCurrentUserOnTokenChange() {
       async function fetchCurrentUser() {
-        // NOTE: Could also use jwt to verify username 
-        // but what the best choice? we are adding a state for username
-        // for now
-        const user = await JoblyApi.getUser(username);
+        // using jwt to get username
+        const usernameObj = jwt.decode(token);
+        const user = await JoblyApi.getUser(usernameObj.username);
         setCurrentUserData(user);
 
         // reset token in frontend null so effect doesn't run
@@ -61,21 +59,29 @@ function App() {
   /** signup user with form data and API call */
   async function signup(userFormData) {
     const token = await JoblyApi.register(userFormData);
-    setUsername(userFormData.username);
     setToken(token);
   }
   /** login user using form data and API call */
   async function login(userFormData) {
     const token = await JoblyApi.login(userFormData);
-    setUsername(userFormData.username);
     setToken(token);
+  }
+
+  /** Logout current user */  
+  async function logout() {
+    setToken(null);
+    JoblyApi.token = null;
+    setCurrentUserData(null);
   }
 
   return (
     <div className="App">
       <BrowserRouter>
         <Container fluid>
-          <Navigation currentUser={currentUserData} />
+          <Navigation
+            currentUser={currentUserData}  
+            logout={logout}
+          />
           <Routes
             currentUser={currentUserData}
             login={login}
