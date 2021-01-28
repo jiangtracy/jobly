@@ -15,6 +15,7 @@ import CompanyDetail from "./CompanyDetail";
  * - login: fn to be called in App
  * - currentUser: obj like 
  *     { username, firstName, lastName, email, isAdmin, jobs }
+ * - errors, array of string errors
  * 
  * state: none
  *
@@ -28,16 +29,16 @@ import CompanyDetail from "./CompanyDetail";
  * TODO: Write forms for login/signup
  **/
 
-function Routes({signup, login, currentUser}) {
+function Routes({signup, login, currentUser, errors}) {
 
   return (
    
       <Switch>
         <Route exact path="/signup">
-          <SignupForm signup={signup} />
+          <SignupForm signup={signup} errors={errors} />
         </Route>
         <Route exact path="/login">
-          <LoginForm login={login} />
+          <LoginForm login={login} errors={errors}/>
         </Route>
         <Route exact path="/companies">
           <Companies />

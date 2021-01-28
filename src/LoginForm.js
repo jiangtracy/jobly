@@ -5,7 +5,8 @@ import { useHistory } from "react-router-dom";
 * Renders the Login form
 *
 * props:
-* -login: fn to be called in parent
+* - login: fn to be called in parent
+* - errors: array, string errors
 *
 * state: 
 * - formData {username, password }
@@ -18,7 +19,7 @@ const initialFormData = {
   password: "",
 }
 
-function LoginForm({ login }){
+function LoginForm({ login, errors }){
   const [formData, setFormData ] = useState(initialFormData);
   const history = useHistory();
 
@@ -29,17 +30,20 @@ function LoginForm({ login }){
       setFormData( prevFormData => {
         return {
           ...prevFormData,
-          [name] : value,
+            [name] : value,
         }
       });
     }
   
     /** Handle submitting the Login Form */  
+    // TODO: Consider all ajax-y stuff to be handled in effects
     async function handleSubmit(evt) {
       evt.preventDefault();
       await login(formData);
       setFormData(initialFormData);
-      history.push("/companies");
+
+      console.debug("errors in loginForm= ", errors);
+      // if (errors.length === 0) history.push("/companies");
     }
 
     /* Helper function for form validation */
@@ -54,6 +58,9 @@ function LoginForm({ login }){
   
   return (
     <form onSubmit={handleSubmit}>
+
+      {errors.map((err,idx) => <p key={idx}>{err}</p>) }
+
       <label htmlFor="username">Username</label>
       <input 
           name="username" 

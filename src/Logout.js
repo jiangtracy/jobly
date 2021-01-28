@@ -22,7 +22,7 @@ function Logout({ logout, currentUser }) {
   }
 
   return (
-    <a onClick={handleClick}>Logout {currentUser.username}</a>
+    <a onClick={handleClick} href="/">Logout {currentUser.username}</a>
   );
 }
 

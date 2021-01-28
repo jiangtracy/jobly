@@ -22,12 +22,14 @@ import Container from 'react-bootstrap/Container';
  * - currentUserData: obj like 
  *    { username, firstName, lastName, email, isAdmin, jobs }
  * - username: string
+ * - errors: array, error strings
  * 
  * 
  * App -> Navigation
  *        Routes
  **/
 function App() {
+  const [errors, setErrors] = useState([])
   const [token, setToken] = useState(null);
   const [currentUserData, setCurrentUserData] = useState(null);
 
@@ -51,6 +53,11 @@ function App() {
       if (token !== null) {
         JoblyApi.token = token;
         fetchCurrentUser();
+      } else {
+        JoblyApi.token = null;
+        // cannot set currentUser to null here because it is
+        // erasing our current user after effect function runs
+        // where token is to null
       }
     },
     [token]
@@ -63,14 +70,19 @@ function App() {
   }
   /** login user using form data and API call */
   async function login(userFormData) {
-    const token = await JoblyApi.login(userFormData);
-    setToken(token);
+    let newToken;
+    try {
+      newToken = await JoblyApi.login(userFormData); 
+      setToken(newToken);
+    } catch (err) {
+      setErrors([...err]);
+    }
   }
 
   /** Logout current user */  
   async function logout() {
     setToken(null);
-    JoblyApi.token = null;
+    // NOTE: Moving this out to effect
     setCurrentUserData(null);
   }
 
@@ -86,6 +98,7 @@ function App() {
             currentUser={currentUserData}
             login={login}
             signup={signup}
+            errors={errors}
           />
         </Container>
       </BrowserRouter>

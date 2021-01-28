@@ -18,6 +18,8 @@ import Nav from 'react-bootstrap/Nav';
 //use active class
 
 function Navigation({ currentUser, logout }) {
+  console.debug("currentUser in navigation= ", currentUser);
+
 	/** renders signup / login links */
 	function renderLoggedOutLinks() {
 		return (
@@ -35,7 +37,7 @@ function Navigation({ currentUser, logout }) {
 	function renderLoggedInLinks() {
 		return (
 			<Navbar.Collapse id="basic-navbar-nav">
-				<Nav className="ml-auto">
+				<Nav className="ml-auhref">
 					<NavLink to="/companies">Companies</NavLink>
 					<NavLink to="/jobs">Jobs</NavLink>
 					<NavLink to="/profile">Profile</NavLink>

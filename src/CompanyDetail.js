@@ -42,7 +42,7 @@ function CompanyDetail({ currentUser }) {
 		}
 
 		_getCompanyDetail();
-	}, []);
+	}, [handle]);
 
 	if (isError) return <Redirect to="/"/>
   if (isLoading) return <div>Loading...</div>;
