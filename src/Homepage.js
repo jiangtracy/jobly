@@ -22,7 +22,11 @@ import Col from 'react-bootstrap/Col';
 
   return (
     currentUser ?
-    (<div>Hello {currentUser.username} </div>)
+    (
+      <Container className="Homepage align-center">
+        <h4>Hello {currentUser.username} </h4>
+      </Container>
+    )
     :
     (
       <Container className="Homepage align-center">

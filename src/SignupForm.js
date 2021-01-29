@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 
 /* 
 * Renders the signup form
@@ -61,55 +64,78 @@ function SignupForm({ signup }){
 
       return invalidInputArr.length > 0;
     }
-
   
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">Username</label>
-      <input 
-          name="username" 
-          id="username"
-          value={formData.username}
-          onChange={handleChange}
-          required 
-        />
-      <label htmlFor="password">Password</label>
-      <input 
-          name="password" 
-          id="password"
-          value={formData.password}
-          type="password"
-          onChange={handleChange}
-          required  
-        />
-      <label htmlFor="firstName">First Name</label>
-      <input 
-          name="firstName" 
-          id="firstName"
-          value={formData.firstName}
-          onChange={handleChange}
-          required  
-        />
-      <label htmlFor="lastName">Last Name</label>
-      <input 
-          name="lastName" 
-          id="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
-          required  
-        />
-      <label htmlFor="email">Email</label>
-      <input 
-          name="email"
-          type="email" 
-          id="email"
-          value={formData.email}
-          onChange={handleChange}
-          required  
-        />
-      <button disabled={notDone()} >Submit</button>
-    </form>
-  )
+    <Container>
+      <h2 className="my-4">Sign Up</h2>
+
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="username">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            defaultValue="password"
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="firstName">
+          <Form.Label>First name</Form.Label>
+          <Form.Control
+            type="text"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+            defaultValue="test"
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="lastName">
+          <Form.Label>Last name</Form.Label>
+          <Form.Control
+            type="text"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+            defaultValue="test"
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="email">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            defaultValue="test@test.com"
+            required
+          />
+        </Form.Group>
+
+        <Button variant="primary" type="submit" disabled={notDone()}>
+          Submit
+        </Button>
+      </Form>
+    </Container>
+  );
 }
 
 export default SignupForm;
