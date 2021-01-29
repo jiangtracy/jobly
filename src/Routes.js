@@ -42,7 +42,7 @@ function Routes({signup, login, currentUser }) {
           <Companies currentUser={currentUser} />
         </Route>
         <Route exact path ="/companies/:handle">
-          <CompanyDetail currentUser={currentUser} />
+          { currentUser ? <CompanyDetail currentUser={currentUser} /> : <Redirect to="/" /> }
         </Route>
         <Route exact path="/jobs">
           <Jobs currentUser={currentUser} />
