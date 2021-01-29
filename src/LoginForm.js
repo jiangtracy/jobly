@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 /* 
 * Renders the Login form
@@ -24,7 +26,7 @@ const DEMO_USER =  {
   password: "password"
 }
 
-function LoginForm({ login, errors }){
+function LoginForm({ login }){
   const [formData, setFormData ] = useState(initialFormData);
   const history = useHistory();
 
@@ -80,6 +82,39 @@ function LoginForm({ login, errors }){
       return invalidInputArr.length > 0;
     }
 
+    /* Helper function to generate form */
+    // function generateForm() {
+    //   return (
+    //     <Form>
+    //       /* <Form.Group controlId="username">
+    //         <Form.Label>Username</Form.Label>
+    //         <Form.Control type="text"
+    //                       name="username"    
+    //                       value={formData.username}
+    //                       onChange={handleChange}
+    //                       defaultValue="testuser"
+    //                       required/>
+    //       </Form.Group>
+        
+    //       <Form.Group controlId="password">
+    //         <Form.Label>Password</Form.Label>
+    //         <Form.Control type="password"
+    //                       name="password"
+    //                       value={formData.password}
+    //                       onChange={handleChange}
+    //                       defaultValue="password" 
+    //                       required/>
+    //       </Form.Group>
+
+    //       <Button variant="primary" 
+    //               type="submit" 
+    //               disabled={notDone()}>
+    //               Submit
+    //       </Button> */
+    //   </Form>
+    //   );
+    // }
+
   
   return (
     <div>
@@ -105,6 +140,7 @@ function LoginForm({ login, errors }){
       </form>
       <button onClick={handleDemo}>Demo Login</button>
     </div>
+    // {generateForm()}
   );
 }
 
