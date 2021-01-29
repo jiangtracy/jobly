@@ -109,7 +109,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Container fluid>
+        <Container fluid className="App-container">
           <Navigation currentUser={currentUserData} logout={logout}  />
           <Routes
             currentUser={currentUserData}

@@ -1,4 +1,9 @@
 import { Link } from 'react-router-dom';
+import "./Homepage.css";
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 /** 
  * Homepage 
@@ -19,11 +24,28 @@ import { Link } from 'react-router-dom';
     currentUser ?
     (<div>Hello {currentUser.username} </div>)
     :
-    (<div>
-      <h3>Welcome to Jobly</h3>
-      <Link to="/signup">Signup</Link>
-      <Link to="/login">Login</Link>
-    </div>)
+    (
+      <Container className="Homepage align-center">
+      
+        <h3>Welcome to Jobly</h3>
+
+        <Row className="Homepage-row">
+          <Col>
+            <Button variant="outline-primary">
+              <Link to="/login">Login</Link>
+            </Button>
+          </Col>
+          <Col>
+            <Button variant="outline-primary">
+              <Link to="/signup">Signup</Link>
+            </Button>
+          </Col>
+        </Row>
+        
+
+       
+
+      </Container>)
   )
  }
 

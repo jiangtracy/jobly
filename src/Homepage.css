@@ -1,0 +1,13 @@
+.Homepage {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Homepage-row {
+  width: 25%;
+  justify-content: center;
+}
+
