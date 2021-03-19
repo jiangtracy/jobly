@@ -1,3 +1,8 @@
+
+# Jobly
+- A job application site built using React.js and Express.js
+<img src="jobly-demo.gif" width="600"/>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
