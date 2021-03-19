@@ -90,26 +90,31 @@ function LoginForm({ login }) {
         <h2 className="my-4">Log In</h2>
 
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="username">
-          <Form.Label>Username</Form.Label>
+
+        <Form.Group controlId="username" 
+                    className=" d-flex align-items-center justify-content-center">
+          <Form.Label className="px-2">Username</Form.Label>
           <Form.Control
             type="text"
             name="username"
             value={formData.username}
             onChange={handleChange}
             defaultValue="testuser"
+            className="w-50"
             required
           />
         </Form.Group>
 
-        <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
+        <Form.Group controlId="password"  
+                    className=" d-flex align-items-center justify-content-center">
+          <Form.Label className="px-2">Password</Form.Label>
           <Form.Control
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
             defaultValue="password"
+            className="w-50"
             required
           />
         </Form.Group>

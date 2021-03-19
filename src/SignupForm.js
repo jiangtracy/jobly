@@ -71,61 +71,71 @@ function SignupForm({ signup }){
       <h2 className="my-4">Sign Up</h2>
 
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="username">
-          <Form.Label>Username</Form.Label>
+        <Form.Group controlId="username"
+                    className=" d-flex align-items-center justify-content-center">
+          <Form.Label className="px-2">Username</Form.Label>
           <Form.Control
             type="text"
             name="username"
             value={formData.username}
             onChange={handleChange}
+            className="w-50"
             required
           />
         </Form.Group>
 
-        <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
+        <Form.Group controlId="password"
+                    className=" d-flex align-items-center justify-content-center">
+          <Form.Label className="px-2">Password</Form.Label>
           <Form.Control
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
             defaultValue="password"
+            className="w-50"
             required
           />
         </Form.Group>
 
-        <Form.Group controlId="firstName">
-          <Form.Label>First name</Form.Label>
+        <Form.Group controlId="firstName"
+                    className=" d-flex align-items-center justify-content-center">
+          <Form.Label className="px-2">First name</Form.Label>
           <Form.Control
             type="text"
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
             defaultValue="test"
+            className="w-50"
             required
           />
         </Form.Group>
 
-        <Form.Group controlId="lastName">
-          <Form.Label>Last name</Form.Label>
+        <Form.Group controlId="lastName"
+                    className=" d-flex align-items-center justify-content-center">
+          <Form.Label className="px-2">Last name</Form.Label>
           <Form.Control
             type="text"
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
             defaultValue="test"
+            className="w-50"
             required
           />
         </Form.Group>
 
-        <Form.Group controlId="email">
-          <Form.Label>Email</Form.Label>
+        <Form.Group controlId="email"
+                    className=" d-flex align-items-center justify-content-center">
+          <Form.Label className="px-2">Email</Form.Label>
           <Form.Control
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             defaultValue="test@test.com"
+            className="w-50"
             required
           />
         </Form.Group>

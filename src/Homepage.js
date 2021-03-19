@@ -34,20 +34,14 @@ import Col from 'react-bootstrap/Col';
         <h3>Welcome to Jobly</h3>
 
         <Row className="Homepage-row">
-          <Col>
-            <Button variant="outline-primary">
+            <Button variant="outline-primary" className="mr-3">
               <Link to="/login">Login</Link>
             </Button>
-          </Col>
-          <Col>
+        
             <Button variant="outline-primary">
               <Link to="/signup">Signup</Link>
             </Button>
-          </Col>
         </Row>
-        
-
-       
 
       </Container>)
   )

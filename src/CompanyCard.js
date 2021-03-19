@@ -31,7 +31,9 @@ function CompanyCard({ handle, name, description, logoUrl }) {
    **/  
   function renderCard() {
     return ( 
-      <Card style={{width: "100%"}} className="row">
+      <Card style={{width: "80%"}}
+            className="row"
+            border="success">
         <div>
           <Card.Body>
             <Card.Title>{name}</Card.Title>
@@ -41,7 +43,10 @@ function CompanyCard({ handle, name, description, logoUrl }) {
           </Card.Body>
         </div>
         <div>
-          <Card.Img variant={handle} src={logoUrl} style={THUMBNAIL_STYLES}/>
+          <Card.Img variant={handle} 
+                    src={logoUrl} 
+                    style={THUMBNAIL_STYLES}
+                    className="pb-2"/>
         </div>
       </Card>
     );
@@ -49,7 +54,7 @@ function CompanyCard({ handle, name, description, logoUrl }) {
 
   return (
     <Row className="my-2 mx-auto">
-      <Link to={`companies/${handle}`} className="container">
+      <Link to={`companies/${handle}`} className="container  d-flex justify-content-center">
         {renderCard()}
       </Link>
     </Row>

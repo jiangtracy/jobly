@@ -34,7 +34,7 @@ function SearchForm({ updateList }) {
 
   const notDone = (searchTerm.trim().length > 1) ? false : true;
   return (
-    <form className="SearchForm mx-auto container-fluid" onSubmit={handleSubmit} >
+    <form className="SearchForm w-50 container-fluid" onSubmit={handleSubmit} >
       <Row>
         <input 
           name="search" 

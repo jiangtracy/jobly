@@ -29,9 +29,10 @@ function JobCard({companyName, title, salary, equity  }) {
    **/
   function renderCard() {
     return (
-      <Card style={{ width: "100%" }} className="row">
+      <Card style={{ width: "80%" }}
+            border="success" >
         <div>
-          <Card.Body>
+          <Card.Body >
             <Card.Title>{title}</Card.Title>
             {companyNameTag()}
             <Card.Text>Salary: {salary}</Card.Text>
@@ -43,7 +44,7 @@ function JobCard({companyName, title, salary, equity  }) {
   }
 
   return (
-    <Row className="my-2 mx-auto">
+    <Row className="my-2 mx-auto d-flex justify-content-center">
       {renderCard()}
     </Row>
   )
